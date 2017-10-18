@@ -6,10 +6,11 @@
 .gradle
 .gogradle
 /gappless-backend/build/
-/gappless-backend/src/generated
+/gappless-backend/src/generated/*
 /gappless-edge/bin/*
 !/gappless-edge/bin/.keepme
 /gappless-edge/pkg/*
 !/gappless-edge/pkg/.keepme
 /gappless-edge/src/edge-service/vendor/*
+/gappless-edge/src/edge-service/protobuf/*
 /gappless-edge/src/edge-service/mock_protobuf/*

@@ -30,7 +30,7 @@ TODO: improve test coverage
 
 ## Prereuisites
 
-- on PATH: go, protoc and gradle
+- on PATH: go, protoc, protoc-gen-go and gradle (PATH )
 
 - installed docker (or manual startup)
 
@@ -39,6 +39,9 @@ TODO: improve test coverage
 ```
 brew update && brew install go gradle protobuf
 go get -u github.com/golang/protobuf/protoc-gen-go
+export GOPATH="$HOME/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 ```
 
 ## clone from github

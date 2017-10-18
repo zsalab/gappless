@@ -1,10 +1,13 @@
 ## Prereuisites
+
 - on PATH: go, protoc gradle
+
 - installed docker (or manual startup)
 
-Install prereuisites on Mac OS X
+## Install prereuisites on Mac OS X
 
 brew update && brew install go gradle protobuf
+
 go get -u github.com/golang/protobuf/protoc-gen-go
 
 ## clone from github

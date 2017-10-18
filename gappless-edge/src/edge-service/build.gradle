@@ -52,6 +52,7 @@ task cleanProto {
 	doFirst{
 		delete("${projectDir}/protobuf")
 		delete("${projectDir}/mock_protobuf")
+		delete("${projectDir}/vendor")
 	}
 }
 clean.dependsOn cleanProto

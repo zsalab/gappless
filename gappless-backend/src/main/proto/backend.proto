@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "com.gappless.protobuf";
+option java_outer_classname = "BackendProto";
+option go_package = "protobuf";
+
+message Id {
+	int64 id = 1;
+}
+
+message Book {
+	int64 id = 1;
+	string title = 2;
+	int32 nrOfPage = 3;
+}
+
+message Empty {}
+
+service BookService {
+	rpc list(Empty) returns (stream Book) {};
+	rpc create(Book) returns (Book) {};
+	rpc read(Id) returns (Book) {};
+	rpc update(Book) returns (Book) {};
+	rpc delete(Id) returns (Empty) {};
+}

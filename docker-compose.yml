@@ -1,0 +1,33 @@
+version: '3'
+services:
+  gappless-backend-even:
+    build: gappless-backend
+    ports:
+      - 9110:9110
+    networks:
+      gappless:
+        ipv4_address: 172.16.100.10
+  gappless-backend-odd:
+    build: gappless-backend
+    ports:
+      - 9111:9110
+    networks:
+      gappless:
+        ipv4_address: 172.16.100.11
+  gappless-edge:
+    build: gappless-edge
+    ports:
+      - 8180:8180
+    networks:
+      gappless:
+        ipv4_address: 172.16.100.5
+    environment:
+      - ARGS=--backend 172.16.100.10:9110 --backend 172.16.100.11:9110
+
+networks:
+  gappless:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.100.0/24

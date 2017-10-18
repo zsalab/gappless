@@ -1,0 +1,32 @@
+plugins {
+	id 'eclipse'
+	id 'com.github.blindpirate.gogradle' version "0.7.0"
+}
+
+golang {
+	packagePath = 'edge-service'
+}
+
+dependencies {
+	golang {
+		build 'github.com/gorilla/mux'
+		build 'github.com/golang/protobuf/proto'
+		build 'google.golang.org/grpc'
+		build 'github.com/DMXRoid/grpoolc'
+		build 'golang.org/x/net/context'
+	}
+}
+
+task generateClient(type:Exec) {
+	doFirst {
+		mkdir 'protobuf'
+	}
+	commandLine 'protoc', '--go_out=plugins=grpc:protobuf/', '--proto_path=../../../gappless-backend/src/main/proto', 'backend.proto'
+}
+
+build.dependsOn generateClient
+
+task buildDocker(type: Exec, dependsOn: generateClient) {
+	workingDir '../../'
+	commandLine 'docker', 'build', '-t', 'gappless/gappless-edge', '.'
+}

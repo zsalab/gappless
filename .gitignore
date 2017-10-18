@@ -12,5 +12,4 @@
 /gappless-edge/pkg/*
 !/gappless-edge/pkg/.keepme
 /gappless-edge/src/edge-service/vendor/*
-/gappless-edge/src/edge-service/protobuf/*
 /gappless-edge/src/edge-service/mock_protobuf/*

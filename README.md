@@ -13,13 +13,11 @@ Simple example without sharding (listen on default port: 8180)
 ./gappless-edge/bin/edge-service --backend 127.0.0.1:9110
 ```
 
-The service uses H2 memory database
-
 TODO: improve test coverage (especially grpc)
 
 ## java service
 
-The service listen on 9110 port by default, but it is possible to change with the grpc.port command line argument
+The service listen on 9110 port by default, but it is possible to change with the grpc.port command line argument. The service uses H2 memory database.
 
 Example start with specific port
 ```
@@ -30,7 +28,7 @@ TODO: improve test coverage
 
 ## Prereuisites
 
-- on PATH: go, protoc, protoc-gen-go and gradle (PATH )
+- on PATH: go, protoc, protoc-gen-go, mockgen and gradle
 
 - installed docker (or manual startup)
 

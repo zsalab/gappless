@@ -4,6 +4,7 @@
 /*/.project
 /*/.classpath
 .gradle
+.gogradle
 /gappless-backend/build/
 /gappless-backend/src/generated
 /gappless-edge/bin/*
@@ -11,6 +12,5 @@
 /gappless-edge/pkg/*
 !/gappless-edge/pkg/.keepme
 /gappless-edge/src/edge-service/vendor/*
-gappless-edge/src/edge-service/.gogradle
 gappless-edge/src/edge-service/protobuf/*
 !gappless-edge/src/edge-service/protobuf/.keepme

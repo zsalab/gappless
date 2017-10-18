@@ -1,1 +1,2 @@
 include "gappless-backend", "gappless-edge"
+project(':gappless-edge').projectDir = new File(settingsDir, 'gappless-edge/src/edge-service')

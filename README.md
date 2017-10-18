@@ -15,7 +15,7 @@ Simple example without sharding (listen on default port: 8180)
 
 The service uses H2 memory database
 
-TODO: add tests
+TODO: improve test coverage (especially grpc)
 
 ## java service
 
@@ -39,6 +39,7 @@ TODO: improve test coverage
 ```
 brew update && brew install go gradle protobuf
 go get -u github.com/golang/protobuf/protoc-gen-go
+go get -u github.com/golang/mock/mockgen
 export GOPATH="$HOME/go"
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"

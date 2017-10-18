@@ -2,5 +2,6 @@
 
 owd="$(pwd)"
 cd "$(dirname $0)"
-GOPATH="$(dirname $(dirname $(pwd)))" go $@
+GP="$(dirname $(dirname $(pwd)))"
 cd "$owd"
+GOPATH="$GP" go $@

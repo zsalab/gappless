@@ -14,17 +14,47 @@ dependencies {
 		build 'google.golang.org/grpc'
 		build 'github.com/DMXRoid/grpoolc'
 		build 'golang.org/x/net/context'
+		
+		test 'github.com/golang/mock/gomock'
 	}
 }
 
-task generateClient(type:Exec) {
+task generateClient(type:Exec, dependsOn:installDependencies) {
 	doFirst {
 		mkdir 'protobuf'
 	}
+	environment 	'GOPATH', "${projectDir}/.gogradle/project_gopath:${System.env.GOPATH}"
 	commandLine 'protoc', '--go_out=plugins=grpc:protobuf/', '--proto_path=../../../gappless-backend/src/main/proto', 'backend.proto'
 }
+task generateMock(type:Exec, dependsOn:generateClient) {
+	doFirst {
+		mkdir "/tmp/mock_protobuf"
+		mkdir 'mock_protobuf'
+	}
+	environment 	'GOPATH', "${projectDir}/.gogradle/project_gopath:${System.env.GOPATH}"
+	commandLine 'mockgen', '-destination', "/tmp/mock_protobuf/backend.pb.go", 'edge-service/protobuf', 'BookServiceClient,BookService_ListClient'
+	doLast {
+		copy {
+			from("/tmp/mock_protobuf") {
+				include 'backend.pb.go'
+			}
+			into 'mock_protobuf'
+			filter{
+				String line -> line.replaceAll("edge-service/vendor/","")
+			}
+		}
+	}
+}
+installDependencies.finalizedBy generateMock
 
-build.dependsOn generateClient
+
+task cleanProto {
+	doFirst{
+		delete("${projectDir}/protobuf")
+		delete("${projectDir}/mock_protobuf")
+	}
+}
+clean.dependsOn cleanProto
 
 task buildDocker(type: Exec, dependsOn: generateClient) {
 	workingDir '../../'
